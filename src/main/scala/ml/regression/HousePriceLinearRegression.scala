@@ -40,11 +40,15 @@ object HousePriceLinearRegression {
     val algInput = assembler.transform(intermidateDF).select($"label", $"features")
 
     val lr = new LinearRegression()
-    printModel(lr.fit(algInput))
+    printModel(lr.fit(algInput), sparkSession)
 
   }
 
-  def printModel(model: LinearRegressionModel) = {
+  def printModel(model: LinearRegressionModel, session: SparkSession) = {
+
+    import session.implicits._
+
+
     println(s"number of iterations: ${model.summary.totalIterations}")
     println(s"objective history: ${model.summary.objectiveHistory.toList}")
     println(s"SSE: ${model.summary.r2}")
@@ -54,8 +58,7 @@ object HousePriceLinearRegression {
     println(s"MAE: ${model.summary.explainedVariance}")
     println(s"coefficientStandardErrors: ${model.summary.coefficientStandardErrors.toList}")
 
-    model.summary.residuals.show(50)
-    model.summary.predictions.show(50)
+    model.summary.predictions.select($"label", $"features", $"prediction", ($"label" - $"prediction").as("residuals")).show()
   }
 
 }

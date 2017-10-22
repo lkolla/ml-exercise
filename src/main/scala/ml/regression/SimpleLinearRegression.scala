@@ -24,6 +24,8 @@ object SimpleLinearRegression {
     trainingSummary.residuals.show(50)
     println(s"SSE: ${trainingSummary.r2}")
     println(s"RMSE: ${trainingSummary.rootMeanSquaredError}")
+
+    session.stop()
   }
 
 
