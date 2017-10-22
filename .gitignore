@@ -1,0 +1,47 @@
+# Mac Finder
+.DS_Store
+
+# Maven
+target/
+
+
+# Package
+*.war
+*.ear
+
+# IDE
+.classpath
+.project
+.settings/
+.idea/
+.externalToolBuilders
+
+# Spring
+.springBeans
+
+# Testing
+test-output
+
+# logging
+logs/
+*.log
+/*.tsv
+/*.json
+/*.txt
+/*.gz
+/*.crc
+
+# Binary folder
+bin/
+
+# sbt specific
+.cache/
+.lib/
+dist/*
+lib_managed/
+project/boot/
+project/plugins/project/
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
